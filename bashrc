@@ -91,7 +91,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias cda='cd ~/code/AOC/'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -128,4 +127,5 @@ function jumpto () {
     echo "192.16.110.$1";
     ssh -J jumpbox adg51575@192.168.110.$1;
     };
-alias daily="cd ~/win/daily_tasks/";
+alias daily="cd ~/win/notes/daily_tasks/";
+

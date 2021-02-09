@@ -91,3 +91,26 @@ nnoremap Y y$
 " Make w act like iw
 onoremap w iw
 onoremap W iW
+
+" YOUTUBE VIMRC FEATURES
+" use :find folder/*
+" :b autocomplete jump to any open buffer
+" 
+set path+=**
+let g:netrw_banner = 0        " disable annoying banner
+let g:netrw_browse_split = 4  " open in prior window
+let g:netrw_altv = 1          " open splits to the right
+let g:netrw_liststyle = 3     " tree view
+let g:netrw_winsize = 25      " Opens as side explorer
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+augroup ProjectDrawer
+  autocmd!
+    autocmd VimEnter * :Vexplore
+augroup END
+" inoremap def( def ():<CR>"""Return: """<ESC>kF(i
+
+" SNIPPETS
+" Make new daily log file
+nnoremap <leader>dl :! bash /mnt/c/Users/adg51575/Documents/daily_tasks/plan_week.sh<CR><CR>
+
