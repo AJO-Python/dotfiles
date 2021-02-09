@@ -128,4 +128,4 @@ function jumpto () {
     ssh -J jumpbox adg51575@192.168.110.$1;
     };
 alias daily="cd ~/win/notes/daily_tasks/";
-
+alias notes="cd ~/win/notes/";
