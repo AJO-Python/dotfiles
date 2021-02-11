@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -115,11 +115,13 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
+######################################################
+# MY SETTINGS
+######################################################
 echo `date`;
-cd;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
+cd;
 
 function cd () { builtin cd $@ && ls; }
 
@@ -127,5 +129,36 @@ function jumpto () {
     echo "192.16.110.$1";
     ssh -J jumpbox adg51575@192.168.110.$1;
     };
+
+
+function today () {
+    cd ~/win/notes/daily_tasks/;
+    cur_date=`date +%F`;
+    cur_day=`date +%a`;
+
+    # Move into week dir
+    # Make if not exists
+    if [ $cur_day = "Mon" ]; then
+        cur_week="week-$cur_date";
+    else
+        mon_date=`date --date='last mon' +%F`;
+        cur_week="week-$mon_date";
+    fi;
+    if [ ! -d $cur_week ]; then
+        mkdir $cur_week;
+    fi;
+    cd $cur_week;
+    
+    # Make the file if necessary and open vim
+    if [ ! -f $cur_date ]; then
+        cat ~/win/notes/daily_tasks/.day_log_template > $cur_date;
+    fi
+    vim;
+    };
+
+
 alias daily="cd ~/win/notes/daily_tasks/";
 alias notes="cd ~/win/notes/";
+
+alias recent='ls -t | awk "print{$1}"';
+
