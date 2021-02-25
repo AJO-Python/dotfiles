@@ -126,7 +126,7 @@ cd;
 function cd () { builtin cd $@ && ls; }
 
 function jumpto () {
-    echo "192.16.110.$1";
+    echo "192.168.110.$1";
     ssh -J jumpbox adg51575@192.168.110.$1;
     };
 
@@ -156,9 +156,13 @@ function today () {
     vim;
     };
 
+function ssh-vim () {
+    scp ~/.vimrc $1:~;
+    ssh $1;
+    };
 
 alias daily="cd ~/win/notes/daily_tasks/";
 alias notes="cd ~/win/notes/";
-
 alias recent='ls -t | awk "print{$1}"';
+
 

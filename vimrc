@@ -1,7 +1,7 @@
 "Remap space to leader
 nnoremap <SPACE> <Nop>
 let mapleader=" "
-
+  
 set noerrorbells
 set ruler
 set number relativenumber
@@ -17,6 +17,7 @@ set scrolloff=8
 set wrap
 set hidden
 set wildmenu
+set wildmode=longest,list:longest
 set laststatus=2
 set title
 set backspace=indent,eol,start
@@ -24,6 +25,9 @@ set history=1000
 set background=dark
 set breakindent
 set linebreak
+set splitbelow
+set splitright
+
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
@@ -31,8 +35,11 @@ syntax on
 filetype off
 filetype plugin indent on
 
+set hlsearch
+" Clears search highlighting and resets last command
+nnoremap <CR> :noh<CR>:<backspace>
+
 " Setup cursor appearance
-" hi Cursor ctermbg=67 ctermfg=67
 " Toggle cursor position highlighting
 colorscheme desert
 hi CursorLine cterm=NONE ctermbg=67 ctermfg=white
@@ -74,7 +81,7 @@ inoremap '' ''<LEFT>
 inoremap `` ``<LEFT>
 
 " Save files quicker
-noremap <leader>s :w<cr>
+noremap <leader>s :wa<cr>
 
 " Indent using TAB and S-TAB
 nnoremap <TAB> >>
@@ -111,6 +118,4 @@ augroup END
 " inoremap def( def ():<CR>"""Return: """<ESC>kF(i
 
 " SNIPPETS
-" Make new daily log file
-nnoremap <leader>dl :! bash /mnt/c/Users/adg51575/Documents/daily_tasks/plan_week.sh<CR><CR>
 
