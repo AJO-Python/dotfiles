@@ -8,14 +8,12 @@ function lecho () {
 cd ~/dotfiles/;
 good_response="Already up-to-date.";
 response=`git pull`;
-lecho "$good_response";
-lecho "$response";
 if [ "$response" = "$good_response" ]; then
     lecho "pull successful";
     git add -A;
     git commit -m "daily updates";
     git push;
-    lecho "Changes pushed.";
+    lecho "changes pushed.";
 else
     lecho "git pull failed to return \$good_response";
 fi;
