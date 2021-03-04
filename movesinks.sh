@@ -1,4 +1,6 @@
 #!/bin/bash
+# modify /etc/pulse/default.pa
+# > load-module module-stream-restore restore_device=false
 
 echo "Setting default sink to: $1";
 pacmd set-default-sink $1;
