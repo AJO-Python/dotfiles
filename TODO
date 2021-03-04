@@ -1,0 +1,4 @@
+TODO
+- cron job to git pull and push dotfiles on boot and daily?
+- pulseaudio cli script to switch audio signals
+    - Semi-working script but need to fix the grepping
