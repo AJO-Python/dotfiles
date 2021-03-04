@@ -136,4 +136,9 @@ function ssh-vim () {
     ssh $1;
     };
 
+function lecho () {
+    # lecho path/to/log "log message"
+    now=`date +"[%Y-%m-%d %H:%M:%S]"`;
+    echo "$now $2" >> $1; 
+};
 
