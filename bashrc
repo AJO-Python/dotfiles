@@ -1,4 +1,4 @@
-set -o vi
+set -o vi;
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -87,14 +87,17 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-######################################################
-# MY SETTINGS
-######################################################
+
+
+# SETUP
+#tmux; 
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
 cd;
 
+
+# FUNCTIONS
 function cd () { builtin cd $@ && ls; }
 
 function jumpto () {
