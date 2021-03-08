@@ -106,6 +106,8 @@ function jumpto () {
     };
 
 function today () {
+    log="/var/log/daily_tasks.log";
+    lecho log "Started.";
     cd ~/win/notes/daily_tasks/;
     cur_date=`date +%F`;
     cur_day=`date +%a`;
@@ -118,16 +120,21 @@ function today () {
         mon_date=`date --date='last mon' +%F`;
         cur_week="week-$mon_date";
     fi;
+    lecho log "Set start of week.";
     if [ ! -d $cur_week ]; then
+        lecho log "Making current week directory.";
         mkdir $cur_week;
     fi;
+    lecho "Moving to current week";
     cd $cur_week;
     
     # Make the file if necessary and open vim
     if [ ! -f $cur_date ]; then
+        lecho log "Adding template for today.";
         cat ~/win/notes/daily_tasks/.day_log_template > $cur_date;
     fi
-    vim;
+    lecho log "Opening notes.";
+    vim -c '<leader>l' $cur_date;
 };
 
 function todo () {
