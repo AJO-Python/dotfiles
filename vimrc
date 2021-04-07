@@ -27,6 +27,7 @@ set breakindent
 set linebreak
 set splitbelow
 set splitright
+set foldmethod=indent
 
 " Puts two spaces before a wrapped line
 let &showbreak="  "
@@ -77,6 +78,7 @@ inoremap () ()<LEFT>
 inoremap {} {}<LEFT>
 inoremap [] []<LEFT>
 inoremap "" ""<LEFT>
+inoremap """ """<CR>"""<UP>
 inoremap '' ''<LEFT>
 inoremap `` ``<LEFT>
 
