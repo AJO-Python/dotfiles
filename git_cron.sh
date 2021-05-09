@@ -5,7 +5,7 @@ function lecho () {
     echo "$now $1" >> /var/log/git_cron.log;
 };
 
-cd ~/dotfiles/;
+cd ~/dotfiles;
 good_response="Already up-to-date.";
 response=`git pull`;
 if [ "$response" = "$good_response" ]; then
@@ -15,5 +15,5 @@ if [ "$response" = "$good_response" ]; then
     git push;
     lecho "changes pushed.";
 else
-    lecho "git pull failed to return \$good_response";
+    lecho "git pull failed to return $good_response";
 fi;

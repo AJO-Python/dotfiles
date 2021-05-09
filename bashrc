@@ -5,6 +5,7 @@ case $- in
       *) return;;
 esac
 # don't put duplicate lines or lines starting with space in the history.
+# comment
 HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -107,10 +108,10 @@ function jumpto () {
 
 function today () {
     log="/var/log/daily_tasks.log";
-    lecho log "Started.";
-    cd ~/win/notes/daily_tasks/;
+    notes_path="/home/$USER/win/notes/daily_tasks/";
     cur_date=`date +%F`;
     cur_day=`date +%a`;
+    lecho $log "Initiated";
 
     # Move into week dir
     # Make if not exists
@@ -120,21 +121,20 @@ function today () {
         mon_date=`date --date='last mon' +%F`;
         cur_week="week-$mon_date";
     fi;
-    lecho log "Set start of week.";
-    if [ ! -d $cur_week ]; then
-        lecho log "Making current week directory.";
-        mkdir $cur_week;
+    cur_week_path="${notes_path}${cur_week}";
+    cur_date_path="${cur_week_path}/${cur_date}";
+    lecho $log "Week beginning $cur_week";
+    if [ ! -d $cur_week_path ]; then
+        lecho $log "Making ${cur_week_path}";
+        mkdir $cur_week_path;
     fi;
-    lecho "Moving to current week";
-    cd $cur_week;
-    
     # Make the file if necessary and open vim
-    if [ ! -f $cur_date ]; then
-        lecho log "Adding template for today.";
-        cat ~/win/notes/daily_tasks/.day_log_template > $cur_date;
+    if [ ! -f $cur_date_path ]; then
+        lecho $log "Adding template for today.";
+        cat ~/win/notes/daily_tasks/.day_log_template > $cur_date_path;
     fi
-    lecho log "Opening notes.";
-    vim -c '<leader>l' $cur_date;
+    lecho $log "Opening notes";
+    vim $cur_date_path;
 };
 
 function todo () {
