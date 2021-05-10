@@ -1,5 +1,6 @@
 "Remap space to leader
 nnoremap <SPACE> <Nop>
+nnoremap <SPACE> :wa<CR>
 let mapleader=" "
   
 set noerrorbells
@@ -28,7 +29,7 @@ set linebreak
 set splitbelow
 set splitright
 set foldmethod=indent
-
+set foldlevelstart=0
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
@@ -120,4 +121,7 @@ augroup END
 " inoremap def( def ():<CR>"""Return: """<ESC>kF(i
 
 " SNIPPETS
+" PYTHON
+nnoremap <leader>r <esc>:w<CR>:!clear;python3 %<CR>
+
 
