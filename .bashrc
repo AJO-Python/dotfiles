@@ -97,18 +97,16 @@ LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
 cd;
 
+# Allows x11 and displaying tkinter through wsl2
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+export LIBGL_ALWAYS_INDIRECT=1
 
 # FUNCTIONS
 function cd () { builtin cd $@ && ls; }
 
-function jumpto () {
-    echo "192.168.110.$1";
-    ssh -J jumpbox adg51575@192.168.110.$1;
-    };
-
 function today () {
     log="/var/log/daily_tasks.log";
-    notes_path="/home/$USER/win/notes/daily_tasks/";
+    notes_path="/home/$USER/Documents/notes/daily_tasks/";
     cur_date=`date +%F`;
     cur_day=`date +%a`;
     lecho $log "Initiated";
@@ -131,14 +129,14 @@ function today () {
     # Make the file if necessary and open vim
     if [ ! -f $cur_date_path ]; then
         lecho $log "Adding template for today.";
-        cat ~/win/notes/daily_tasks/.day_log_template > $cur_date_path;
+        cat "${notes_path}.day_log_template" > $cur_date_path;
     fi
     lecho $log "Opening notes";
     vim $cur_date_path;
 };
 
 function todo () {
-    vim ~/win/notes/daily_tasks/TODO;
+    vim /home/$USER/Documents/notes/daily_tasks/TODO;
 };
 
 function ssh-vim () {
