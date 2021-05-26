@@ -150,3 +150,6 @@ function lecho () {
     echo "$now $2" >> $1; 
 };
 
+function check_log () {
+    cat $1 | grep -E "runtime|called" | tail -n20;
+};
