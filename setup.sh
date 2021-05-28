@@ -1,25 +1,27 @@
 #!/bin/bash
 
-old_path="/home/josh/dotfiles/old_dots";
+FILES=(
+    ".bashrc"
+    ".bash_aliases"
+    ".vimrc"
+    ".tmux.conf"
+    ".tmux.conf.local"
+    )
 
-echo "Moving old files to /dotfiles/old_dots"
+old_path="$HOME/dotfiles/old_dots";
+
 if ! [ -d "$old_path" ]; then
-    echo "Trying to make $old_path"
+    echo "Making $old_path"
     mkdir "$old_path";
 fi;
 
-cd ~;
-for file in .bashrc .bash_aliases .vimrc tmux;
-do
+for file in ${FILES[*]}; do
     echo "On $file";
-    if [ -L "$file" ] || [ -d "$file" ]; then
-        mv $file ~/dotfiles/old_dots/ && echo "Moved $file to old_dots";
+    # Moves existing files - leaves symlinks in place
+    if [ -f "$file" ]; then
+        mv $file $HOME/dotfiles/old_dots/ && echo "Moved $file to old_dots";
     fi;
+    echo "symlinking $file to $HOME";
+    ln -sv $HOME/dotfiles/$file $HOME/$file
 done;
-
-echo "symlinking .bash_aliases, .bashrc, .vimrc, tmux to ~";
-ln -sv /home/josh/dotfiles/.bash_aliases /home/josh/.bash_aliases;
-ln -sv /home/josh/dotfiles/.bashrc /home/josh/.bashrc;
-ln -sv /home/josh/dotfiles/.vimrc /home/josh/.vimrc;
-ln -sb /home/josh/dotfiles/tmux /home/josh/tmux;
 echo "Done";
