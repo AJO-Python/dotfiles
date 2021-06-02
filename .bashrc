@@ -153,3 +153,7 @@ function lecho () {
 function check_log () {
     cat $1 | grep -E "runtime|called" | tail -n20;
 };
+
+function myvenv () {
+    source "/home/josh/Documents/code/venvs/$1/bin/activate";
+};
