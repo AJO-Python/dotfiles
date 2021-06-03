@@ -92,7 +92,8 @@ fi
 
 
 # SETUP
-#tmux; 
+# WSL starts in a mounted dir - force change it to ~/
+cd;
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
