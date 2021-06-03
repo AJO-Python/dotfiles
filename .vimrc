@@ -29,7 +29,7 @@ set linebreak
 set splitbelow
 set splitright
 set foldmethod=indent
-set foldlevelstart=0
+set foldlevelstart=4
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
@@ -74,14 +74,12 @@ inoremap <C-l> <RIGHT>
 noremap <C-x> :bp<Bar>bd #<Cr>
 
 " Typing a pair of punctuation moves the cursor back inside that punctuation
-inoremap <> <><LEFT>
-inoremap () ()<LEFT>
-inoremap {} {}<LEFT>
-inoremap [] []<LEFT>
-inoremap "" ""<LEFT>
-inoremap """ """<CR>"""<UP>
-inoremap '' ''<LEFT>
-inoremap `` ``<LEFT>
+"inoremap <> <><LEFT>
+"inoremap () ()<LEFT>
+"inoremap {} {}<LEFT>
+"inoremap [] []<LEFT>
+"inoremap '' ''<LEFT>
+"inoremap `` ``<LEFT>
 
 " Save files quicker
 noremap <leader>s :wa<cr>
@@ -116,7 +114,7 @@ let g:netrw_winsize = 10      " Opens as side explorer
 " let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 augroup ProjectDrawer
   autocmd!
-    autocmd VimEnter * :Vexplore
+    autocmd VimEnter * :Vexplore | wincmd l
 augroup END
 " inoremap def( def ():<CR>"""Return: """<ESC>kF(i
 
