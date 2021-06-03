@@ -1,3 +1,4 @@
+# Set vim keybindings for movement (defaults to insert mode)
 set -o vi;
 # If not running interactively, don't do anything
 case $- in
@@ -95,7 +96,6 @@ fi
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
-cd;
 
 # Allows x11 and displaying tkinter through wsl2
 export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
@@ -109,29 +109,32 @@ function today () {
     notes_path="/home/$USER/Documents/notes/daily_tasks/";
     cur_date=`date +%F`;
     cur_day=`date +%a`;
-    lecho $log "Initiated";
-
-    # Move into week dir
-    # Make if not exists
+    cur_month=`date +%b`;
+    cur_year=`date +%Y`;
+    lecho "Edit request for daily log started";
     if [ $cur_day = "Mon" ]; then
         cur_week="week-$cur_date";
     else
         mon_date=`date --date='last mon' +%F`;
         cur_week="week-$mon_date";
     fi;
-    cur_week_path="${notes_path}${cur_week}";
+    cur_month_path="${notes_path}${cur_month}-${cur_year}";
+    cur_week_path="${cur_month_path}/${cur_week}";
     cur_date_path="${cur_week_path}/${cur_date}";
-    lecho $log "Week beginning $cur_week";
+    lecho "$cur_month - week beginning $cur_week";
+    if [ ! -d $cur_month_path ]; then
+        lecho "Making ${cur_month_path}";
+        mkdir $cur_month_path;
+    fi;
     if [ ! -d $cur_week_path ]; then
-        lecho $log "Making ${cur_week_path}";
+        lecho "Making ${cur_week_path}";
         mkdir $cur_week_path;
     fi;
-    # Make the file if necessary and open vim
     if [ ! -f $cur_date_path ]; then
-        lecho $log "Adding template for today.";
+        lecho "Adding template for today.";
         cat "${notes_path}.day_log_template" > $cur_date_path;
     fi
-    lecho $log "Opening notes";
+    lecho "Opening notes";
     vim $cur_date_path;
 };
 
@@ -145,9 +148,12 @@ function ssh-vim () {
     };
 
 function lecho () {
-    # lecho path/to/log "log message"
+    if ! [[ -v log ]]; then
+        echo 'Please set $log as an environment variable before calling lecho';
+        exit 1;
+    fi;
     now=`date +"[%Y-%m-%d %H:%M:%S]"`;
-    echo "$now $2" >> $1; 
+    echo "$now $1" >> $log; 
 };
 
 function check_log () {
