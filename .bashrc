@@ -92,7 +92,8 @@ fi
 
 
 # SETUP
-#tmux; 
+#tmux;
+cd; # Forces start in ~ - otherwise defaults to mounted location in windows
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
