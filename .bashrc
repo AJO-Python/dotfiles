@@ -165,3 +165,21 @@ function check_log () {
 function myvenv () {
     source "${HOME}/venvs/$1/bin/activate";
 };
+
+function recent_files () {
+    SEPERATOR="######################################################";
+    # Find the 10 most recently modified files in dir
+    FILES=`find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | head -n10`;
+
+    # Flip order so cat-ting files reads from bottom to top
+    FILES=`stat $FILES --format '%Y: %n' | sort -n`
+
+    for file in $FILES;
+    do
+        if [ -f ${file} ]; then
+            echo ${file};
+            cat ${file};
+            echo $SEPERATOR;
+        fi;
+    done;
+}
