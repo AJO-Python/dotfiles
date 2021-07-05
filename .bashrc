@@ -108,7 +108,7 @@ function cd () { builtin cd $@ && ls; }
 
 function today () {
     log="/var/log/daily_tasks.log";
-    notes_path="/home/$USER/Documents/notes/daily_tasks/";
+    notes_path="${HOME}/Documents/notes/daily_tasks/";
     cur_date=`date +%F`;
     cur_day=`date +%a`;
     cur_month=`date +%b`;
@@ -141,7 +141,7 @@ function today () {
 };
 
 function todo () {
-    vim /home/$USER/Documents/notes/daily_tasks/TODO;
+    vim ${HOME}/Documents/notes/daily_tasks/TODO;
 };
 
 function ssh-vim () {
@@ -151,7 +151,7 @@ function ssh-vim () {
 
 function lecho () {
     if ! [[ -v log ]]; then
-        echo 'Please set $log as an environment variable before calling lecho';
+        echo 'Please set \$log as an environment variable before calling lecho';
         exit 1;
     fi;
     now=`date +"[%Y-%m-%d %H:%M:%S]"`;
@@ -163,5 +163,5 @@ function check_log () {
 };
 
 function myvenv () {
-    source "/home/josh/Documents/code/venvs/$1/bin/activate";
+    source "${HOME}/venvs/$1/bin/activate";
 };
