@@ -7,3 +7,4 @@ alias python='python3';
 alias workon='source .venv/bin/activate';
 alias workoff='deactivate';
 alias wincode='cd ~/Documents/code/';
+alias autofit='cd ~/Documents/code/fit_muspinsim/autofit_muspinsim'
