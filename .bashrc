@@ -80,9 +80,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -95,6 +93,7 @@ fi
 # SETUP
 # WSL starts in a mounted dir - force change it to ~/
 cd;
+clear;
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
@@ -107,6 +106,7 @@ export LIBGL_ALWAYS_INDIRECT=1
 function cd () { builtin cd $@ && ls; }
 
 function today () {
+    # Opens a notes file with todays date. Creates file if it does not exist
     log="/var/log/daily_tasks.log";
     notes_path="${HOME}/Documents/notes/daily_tasks/";
     cur_date=`date +%F`;
@@ -167,13 +167,12 @@ function myvenv () {
 };
 
 function recent_files () {
-    SEPERATOR="######################################################";
     # Find the 10 most recently modified files in dir
-    FILES=`find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | head -n10`;
-
+    SEPERATOR="######################################################";
+    num_files="${1:-10}";
+    FILES=`find . -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | head -n $num_files`;
     # Flip order so cat-ting files reads from bottom to top
     FILES=`stat $FILES --format '%Y: %n' | sort -n`
-
     for file in $FILES;
     do
         if [ -f ${file} ]; then
@@ -182,4 +181,16 @@ function recent_files () {
             echo $SEPERATOR;
         fi;
     done;
-}
+};
+
+function download () {
+    rsync -r -P -h adg51575@scarf.rl.ac.uk:autofit_muspinsim/$1 /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/;
+};
+
+function upload () {
+    rsync -r -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/$1 adg51575@scarf.rl.ac.uk:autofit_muspinsim/;
+};
+
+function update_py () {
+    rsync -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/{*.py,utils/*.py} adg51575@scarf.rl.ac.uk:autofit_muspinsim/
+};
