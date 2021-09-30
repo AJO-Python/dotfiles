@@ -83,6 +83,7 @@ noremap <C-x> :bp<Bar>bd #<Cr>
 
 " Save files quicker
 noremap <leader>s :wa<cr>
+noremap <leader>W :wqa<cr>
 
 " Indent using TAB and S-TAB
 nnoremap <TAB> >>
