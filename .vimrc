@@ -123,4 +123,9 @@ augroup END
 " PYTHON
 nnoremap <leader>r <esc>:w<CR>:!clear;python3 %<CR>
 
+" Better undo breakpoints
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 
