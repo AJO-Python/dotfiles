@@ -12,3 +12,4 @@ alias beta='cd ~/beta-infrastructure-portal/infrastructure-portal'
 alias ..='cd ../';
 alias ...='cd ../../';
 alias ....='cd ../../../';
+alias gh_token='cat ~/git_tokens/gh_token';
