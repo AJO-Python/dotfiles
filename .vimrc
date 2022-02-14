@@ -11,9 +11,9 @@ set autoindent
 set shiftround
 set smarttab
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set scrolloff=8
 set wrap
 set hidden
@@ -30,6 +30,13 @@ set splitbelow
 set splitright
 set foldmethod=indent
 set foldlevelstart=4
+set smartcase
+set noswapfile
+set nobackup
+set undofile
+set undodir=~/.vim/undodir
+set incsearch
+set colorcolumn=120
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
@@ -128,4 +135,6 @@ inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
+inoremap <CR> <CR><c-g>u
+
 
