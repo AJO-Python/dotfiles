@@ -3,6 +3,7 @@ case $- in
     *) return;;
 esac
 # [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; };
+
 # Set vim keybindings for movement (defaults to insert mode)
 set -o vi;
 # If not running interactively, don't do anything

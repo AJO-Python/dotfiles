@@ -1,0 +1,61 @@
+# SED to recursively find and replace text in files
+find ./ -type f -exec sed -i 's/{find}/{replace}/g' {} +
+
+# find/replace filenames
+# export find="text to find"
+# export replace="text to replace"
+for f in $(find . -type f | grep $find); do mv "$f" "$(echo "$f" | sed s/$find/$replace/)" ; done
+
+# Vim help files
+:help <command>
+    ^ means control
+    i_, n_, c_ for insert, normal, command mode searching
+:helpgrep <term>
+    Searches all help files
+    :cn, :cp for moving to next and previous match
+    :cl to list all matches
+    :cc<num> goto match num
+:help /<regex_symbol>
+    Regex helper
+
+# Check disk usage for files
+du -h -d 1 {filepath}
+
+#########################
+# AQUILON
+#########################
+
+# OpenStack create new VM
+openstack server create --image Centos-7-AQ --flavor c2.small --security-group slurm --key-name adg51575 --network internal --property AQ_OS=centos --property AQ_OSVERSION=7x-x86_64 --property AQ_DOMAIN=dev --property AQ_ARCHETYPE=cloud --property AQ_SANDBOX=adg51575/last_chance_slurm --property AQ_PERSONALITY=slurm_client <INSTANCE_NAME>
+
+# DEPRECATED: Aquilon has changed so that adding ".aq" to the end of the instance name allows a subnet based instance to be Aquilon managed by default
+# Add a subnet based host into aquilon
+aq add_host --sandbox adg51575/last_chance_slurm --personality slurm_client --archetype cloud --osname centos --osversion 7x-x86_64 --machine vm-openstack-prod-<NUMBER> --ip 192.168.110.<IP> --hostname <HOSTNAME>.nubes.stfc.ac.uk
+
+# Add a repo to Aquilon
+1. Make a declaration template in cloud/repositories/<repo>.pan
+    structure template repository/<example>;
+    'name' = '<example>';
+    'owner' = 'support@gridpp.rl.ac.uk';
+    'protocols' = list(
+        dict(
+            'name', '<name>',
+            'url', '<url>',
+        ),
+    );
+
+1.5. You can exclude packages that are causing conflicts like so
+    'excludepkgs' = list(
+        'hpc-pakiti-client*',
+    );
+
+2. In your feature files
+    '/softare/repositories' = add_repositories(list(<repo>));
+
+3. Install the packages with
+    'software/packages' = {
+        pkg_repl(<package1>);
+        pkg_repl(<package2>);
+        };
+
+3.5. As many packages as are needed can be added to the 'softare/packages' command to install them
