@@ -14,3 +14,4 @@ alias ...='cd ../../';
 alias ....='cd ../../../';
 alias gh_token='cat ~/git_tokens/gh_token';
 alias teams_reset='rm -rf /mnt/c/Users/adg51575/AppData/Roaming/Microsoft/Teams/*'
+alias fuck='sudo $(history -p !!)'
