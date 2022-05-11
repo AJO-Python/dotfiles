@@ -16,3 +16,4 @@ alias nr_token='cat ~/tokens/nr_token';
 alias teams_reset='rm -rf /mnt/c/Users/adg51575/AppData/Roaming/Microsoft/Teams/*'
 alias docker-full-restart='docker compose down; docker compose rm -fv; docker compose up -d'
 alias rails='cd ~/rails/raildataingestion-docs'
+alias fuck='sudo $(history -p !!)'
