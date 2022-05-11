@@ -176,9 +176,9 @@ function recent_files () {
     for file in $FILES;
     do
         if [ -f ${file} ]; then
+            echo $SEPERATOR;
             echo ${file};
             cat ${file};
-            echo $SEPERATOR;
         fi;
     done;
 };
@@ -194,3 +194,13 @@ function upload () {
 function update_py () {
     rsync -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/{*.py,utils/*.py} adg51575@scarf.rl.ac.uk:autofit_muspinsim/
 };
+
+function csh () {
+  docker exec -it $1 bash;
+}
+
+if [ -f ".bashrc_local" ]; then
+  source ".bashrc_local"
+fi;
+
+ls ~
