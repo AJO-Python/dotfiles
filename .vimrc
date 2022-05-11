@@ -137,4 +137,5 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 inoremap <CR> <CR><c-g>u
 
-
+" Rename inline
+nnoremap <leader>r "zyiw:%s/<C-R>z//gc<Left><Left><Left>
