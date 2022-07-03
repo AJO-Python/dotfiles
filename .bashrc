@@ -188,18 +188,6 @@ function recent_files () {
     done;
 };
 
-function download () {
-    rsync -r -P -h adg51575@scarf.rl.ac.uk:autofit_muspinsim/$1 /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/;
-};
-
-function upload () {
-    rsync -r -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/$1 adg51575@scarf.rl.ac.uk:autofit_muspinsim/;
-};
-
-function update_py () {
-    rsync -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/{*.py,utils/*.py} adg51575@scarf.rl.ac.uk:autofit_muspinsim/
-};
-
 function csh () {
   docker exec -it $1 bash;
 }
