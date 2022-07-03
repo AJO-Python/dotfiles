@@ -15,3 +15,6 @@ alias ....='cd ../../../';
 alias gh_token='cat ~/git_tokens/gh_token';
 alias teams_reset='rm -rf /mnt/c/Users/adg51575/AppData/Roaming/Microsoft/Teams/*'
 alias fuck='sudo $(history -p !!)'
+alias common='cd ~/.steam/steam/steamapps/common/'
+alias ksp-server='dotnet ~/ksp_mods/LMPServer/Server.dll'
+alias ksp-cd="cd .steam/debian-installation/steamapps/common/Kerbal\ Space\ Program/"
