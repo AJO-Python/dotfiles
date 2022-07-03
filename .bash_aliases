@@ -21,3 +21,6 @@ alias rails='cd ~/rails/raildataingestion-docs'
 alias fuck='sudo $(history -p !!)'
 alias agw='argo get -n dafni-nims-workflow-production'
 alias kgl='kubectl logs -c main -n dafni-nims-workflow-production'
+alias common='cd ~/.steam/steam/steamapps/common/'
+alias ksp-server='dotnet ~/ksp_mods/LMPServer/Server.dll'
+alias ksp-cd="cd .steam/debian-installation/steamapps/common/Kerbal\ Space\ Program/"
