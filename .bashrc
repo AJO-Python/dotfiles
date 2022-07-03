@@ -200,3 +200,4 @@ if [ -f ".bashrc_kube" ]; then
   source ".bashrc_kube"
 fi;
 ls ~
+tmux;
