@@ -192,12 +192,10 @@ function csh () {
   docker exec -it $1 bash;
 }
 
-if [ -f ".bashrc_local" ]; then
-  source ".bashrc_local"
-fi;
+# Source all files ending in _local
+for file in $(ls -a ~/ | grep ".*_local"); do
+  source $file
+done
 
-if [ -f ".bashrc_kube" ]; then
-  source ".bashrc_kube"
-fi;
 ls ~
 tmux;
