@@ -1,5 +1,11 @@
 set nocompatible " be iMproved, required
 filetype off " required
+
+call plug#begin('~/.local/share/nvim/site/autoload/plug.vim')
+Plug 'roxma/nvim-completion-manager'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+call plug#end()
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -101,15 +107,10 @@ noremap <leader>f :set cursorline! cursorcolumn!<CR>
 map <leader>g Go
 
 " Move window with space and directions
-" noremap <leader>l <C-w>l
-" noremap <leader>k <C-w>k
-" noremap <leader>j <C-w>j
-" noremap <leader>h <C-w>h
-
-noremap <leader><LEFT>  <C-w>h
-noremap <leader><DOWN>  <C-w>j
-noremap <leader><UP>    <C-w>k
-noremap <leader><RIGHT> <C-w>l
+noremap <leader>l <C-w>l
+noremap <leader>k <C-w>k
+noremap <leader>j <C-w>j
+noremap <leader>h <C-w>h
 
 " Easier movement
 noremap K {
@@ -153,9 +154,8 @@ nnoremap <C-#> <esc>I# <esc>j
 
 " leader commands
 nnoremap <leader>; :Limelight!!<cr>
-xnoremap <leader>p "_dP
 " Run macros with Q
-nnoremap Q @q
+" nnoremap Q @q
 
 " Consistent Y (yanks till end of line)
 nnoremap Y y$

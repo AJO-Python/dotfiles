@@ -24,3 +24,4 @@ alias kgl='kubectl logs -c main -n dafni-nims-workflow-production'
 alias common='cd ~/.steam/steam/steamapps/common/'
 alias ksp-server='dotnet ~/ksp_mods/LMPServer/Server.dll'
 alias ksp-cd="cd .steam/debian-installation/steamapps/common/Kerbal\ Space\ Program/"
+alias miryoku="/home/josh/qmk_firmware/keyboards/lily58/keymaps/miryoku_plus"

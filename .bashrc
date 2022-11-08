@@ -104,8 +104,8 @@ LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
 
 # Allows x11 and displaying tkinter through wsl2
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=1
+#export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+#export LIBGL_ALWAYS_INDIRECT=1
 
 # FUNCTIONS
 function cd () { builtin cd $@ && ls; }
@@ -196,6 +196,8 @@ function csh () {
 for file in $(ls -a ~/ | grep ".*_local"); do
   source $file
 done
+
+PATH="$HOME/.local/bin:$PATH"
 
 ls ~
 tmux;
