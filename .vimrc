@@ -198,7 +198,7 @@ set path+=**
 " SNIPPETS
 " PYTHON
 let python_highlight_all = 1
-nnoremap <leader>e <esc>:w<CR>:!clear;python3 %<CR>
+nnoremap <leader>e <esc>:w<CR>:!clear;./%<CR>
 
 " Better undo breakpoints
 inoremap , ,<c-g>u
