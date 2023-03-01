@@ -127,16 +127,21 @@ noremap <leader>f :set cursorline! cursorcolumn!<CR>
 map <leader>g Go
 
 " Move window with space and directions
-noremap <leader>l <C-w>l
-noremap <leader>k <C-w>k
-noremap <leader>j <C-w>j
-noremap <leader>h <C-w>h
+noremap <leader><RIGHT> <C-w>l
+noremap <leader><UP> <C-w>k
+noremap <leader><DOWN> <C-w>j
+noremap <leader><LEFT> <C-w>h
 
 " Easier movement
 noremap K {
 noremap J }
 noremap H ^
 noremap L $
+
+noremap <C-UP> {
+noremap <C-DOWN> }
+noremap <C-LEFT> ^
+noremap <C-RIGHT> $
 
 " Movement in insert mode
 inoremap <C-h> <LEFT>
@@ -163,6 +168,7 @@ noremap <leader>W :wqa<cr>
 " Indent using TAB and S-TAB
 nnoremap <TAB> >>
 nnoremap <S-TAB> <<
+inoremap <S-TAB> <ESC><<i
 vnoremap <TAB> >><ESC>gv
 vnoremap <S-TAB> <<<ESC>gv
 
@@ -175,7 +181,7 @@ nnoremap <C-#> <esc>I# <esc>j
 " leader commands
 nnoremap <leader>; :Limelight!!<cr>
 " Run macros with Q
-" nnoremap Q @q
+nnoremap Q @q
 
 " Consistent Y (yanks till end of line)
 nnoremap Y y$
