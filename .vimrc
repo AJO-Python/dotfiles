@@ -56,6 +56,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " Get into nerdree
 nnoremap <leader>n :NERDTreeFocus<CR>
 
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 " JediVim mappings (DEFAULTS)
 " let g:jedi#goto_assigments_command = "<leader>g" -> goto assignment
 " let g:jedi#usages_command = "<leader>n" -> goto usages
@@ -64,7 +66,6 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 " let g:jedi#documentation_command = "K" -> see docs of word under cursor
 " OVERRIDES
 let g:jedi#documentation_command = "<C-k>"
-
 
 "Remap space to leader
 nnoremap <SPACE> <Nop>
