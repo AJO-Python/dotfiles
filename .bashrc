@@ -142,7 +142,9 @@ function today () {
         cat "${notes_path}.day_log_template" > $cur_date_path;
     fi
     lecho "Opening notes";
-    vim $cur_date_path;
+    LAST_FILE=$(find ~/Documents/notes/daily_tasks -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | sed '2q;d')
+    echo $LAST_FILE
+    vim $cur_date_path -o "${LAST_FILE}";
 };
 
 function todo () {
