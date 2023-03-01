@@ -1,6 +1,29 @@
 set nocompatible " be iMproved, required
 filetype off " required
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    " means ctrl-arrow works correctly
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 " set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'davidhalter/jedi-vim'
+Plug 'kh3phr3n/python-syntax'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
+Plug 'git@github.com:junegunn/vim-easy-align.git'
+call plug#end()            " required
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -14,7 +37,9 @@ Plugin 'kh3phr3n/python-syntax'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'junegunn/limelight.vim'
+Bundle 'junegunn/vim-easy-align.vim'
 call vundle#end()            " required
+
 
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
