@@ -22,24 +22,9 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
 Plug 'git@github.com:junegunn/vim-easy-align.git'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'preservim/nerdtree'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'kh3phr3n/python-syntax'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'junegunn/limelight.vim'
-Bundle 'junegunn/vim-easy-align.vim'
-call vundle#end()            " required
-
 
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
@@ -69,9 +54,12 @@ let g:jedi#documentation_command = "<C-k>"
 
 "Remap space to leader
 nnoremap <SPACE> <Nop>
-nnoremap <SPACE> :wa<CR>
+"nnoremap <SPACE> :wa<CR>
 let mapleader=" "
-  
+nnoremap <silent> <LEADER>f :Files<CR>
+nnoremap <silent> <C-f> :Rg<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 set noerrorbells
 set ruler
 set number relativenumber
@@ -121,7 +109,7 @@ nnoremap <CR> :noh<CR>:<backspace>
 " colorscheme slate 
 hi CursorLine cterm=NONE ctermbg=67 ctermfg=white
 "guibg=darkred guifg=white
-noremap <leader>f :set cursorline! cursorcolumn!<CR>
+noremap <leader>: :set cursorline! cursorcolumn!<CR>
 
 " Start new line at bottom of file
 map <leader>g Go
@@ -162,7 +150,7 @@ noremap <C-x> :bp<Bar>bd #<Cr>
 "inoremap `` ``<LEFT>
 
 " Save files quicker
-noremap <leader>s :wa<cr>
+noremap <leader>w :wa<cr>
 noremap <leader>W :wqa<cr>
 
 " Indent using TAB and S-TAB

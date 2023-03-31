@@ -199,5 +199,12 @@ for file in $(ls -a ~/ | grep ".*_local"); do
   source $file
 done
 
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/doc/fzf/examples/completion.bash
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 ls ~
 tmux;
