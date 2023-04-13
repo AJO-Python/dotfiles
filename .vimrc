@@ -36,6 +36,7 @@ let &showbreak="  "
 syntax on
 filetype off
 filetype plugin indent on
+autocmd FileType css setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2
 
 set hlsearch
 " Clears search highlighting and resets last command
