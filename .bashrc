@@ -1,11 +1,11 @@
-tmux -d;
-# Set vim keybindings for movement (defaults to insert mode)
-set -o vi;
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+[ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;};
+# Set vim keybindings for movement (defaults to insert mode)
+set -o vi;
 # don't put duplicate lines or lines starting with space in the history.
 # comment
 HISTCONTROL=ignoreboth
