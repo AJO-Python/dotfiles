@@ -24,6 +24,7 @@ alias common='cd ~/.steam/steam/steamapps/common/'
 alias ksp-server='dotnet ~/ksp_mods/LMPServer/Server.dll'
 alias ksp-cd="cd .steam/debian-installation/steamapps/common/Kerbal\ Space\ Program/"
 alias gs='git status'
+alias gcm='git commit -m'
 alias gpa='git pull --all --rebase --autostash'
 alias gd='git diff'
 alias connect_minio='kubectl port-forward -n minio-nid-secure svc/nid-secure-minio 9009:9000 2>&1 > /dev/null &'
