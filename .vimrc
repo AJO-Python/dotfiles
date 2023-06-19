@@ -60,40 +60,51 @@ nnoremap <silent> <LEADER>f :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-set noerrorbells
-set ruler
-set number relativenumber
-set mouse=a
+" sudo save
+cmap w!! w !sudo tee % >/dev/null
+
+" open and reload vimrc from anywhere
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>rv :so $MYVIMRC<CR>
+
 set autoindent
-set shiftround
-set smarttab
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set scrolloff=8
-set wrap
-set hidden
-set wildmenu
-set wildmode=longest,list:longest
-set laststatus=2
-set title
-set backspace=indent,eol,start
-set history=1000
 set background=dark
+set backspace=indent,eol,start
 set breakindent
+set colorcolumn=120
+set copyindent
+set expandtab
+set foldlevelstart=6
+set foldmethod=indent
+set hidden
+set history=1000
+set incsearch
+set laststatus=2
 set linebreak
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set mouse=a
+set nobackup
+set noerrorbells
+set noswapfile
+set number relativenumber
+set ruler
+set scrolloff=8
+set shiftround
+set shiftwidth=2
+set smartcase
+set smarttab
+set softtabstop=2
 set splitbelow
 set splitright
-set foldmethod=indent
-set foldlevelstart=6
-set smartcase
-set noswapfile
-set nobackup
-set undofile
+set tabstop=2
+set title
 set undodir=~/.vim/undodir
-set incsearch
-set colorcolumn=120
+set undofile
+set wildmenu
+set wildmode=longest,list:longest
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wrap
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
