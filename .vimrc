@@ -120,6 +120,10 @@ noremap <leader><UP> <C-w>k
 noremap <leader><DOWN> <C-w>j
 noremap <leader><LEFT> <C-w>h
 
+" Better movement over wrapped lines
+nnoremap <DOWN> gj
+nnoremap <UP> gk
+
 " Easier movement
 noremap K {
 noremap J }
