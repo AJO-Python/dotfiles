@@ -39,7 +39,7 @@ autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | e
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Get into nerdree
-nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <LEADER>n :NERDTreeFocus<CR>
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
