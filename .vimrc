@@ -94,10 +94,10 @@ set shiftround
 set shiftwidth=2
 set smartcase
 set smarttab
-set softtabstop=2
+set softtabstop=4
 set splitbelow
 set splitright
-set tabstop=2
+set tabstop=4
 set title
 set undodir=~/.vim/undodir
 set undofile
