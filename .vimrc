@@ -1,20 +1,30 @@
 set nocompatible " be iMproved, required
 filetype off " required
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    " means ctrl-arrow works correctly
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'preservim/nerdtree'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'kh3phr3n/python-syntax'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'junegunn/limelight.vim'
-call vundle#end()            " required
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'davidhalter/jedi-vim'
+Plug 'kh3phr3n/python-syntax'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
+Plug 'git@github.com:junegunn/vim-easy-align.git'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+call plug#end()            " required
 
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
@@ -29,8 +39,10 @@ autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | e
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Get into nerdree
-nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <LEADER>n :NERDTreeFocus<CR>
 
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 " JediVim mappings (DEFAULTS)
 " let g:jedi#goto_assigments_command = "<leader>g" -> goto assignment
 " let g:jedi#usages_command = "<leader>n" -> goto usages
@@ -40,51 +52,65 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 " OVERRIDES
 let g:jedi#documentation_command = "<C-k>"
 
-
 "Remap space to leader
 nnoremap <SPACE> <Nop>
-nnoremap <SPACE> :wa<CR>
+"nnoremap <SPACE> :wa<CR>
 let mapleader=" "
-  
-set noerrorbells
-set ruler
-set number relativenumber
-set mouse=a
+nnoremap <silent> <LEADER>f :Files<CR>
+nnoremap <silent> <C-f> :Rg<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" sudo save
+cmap w!! w !sudo tee % >/dev/null
+
+" open and reload vimrc from anywhere
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>rv :so $MYVIMRC<CR>
+
 set autoindent
-set shiftround
-set smarttab
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set scrolloff=8
-set wrap
-set hidden
-set wildmenu
-set wildmode=longest,list:longest
-set laststatus=2
-set title
-set backspace=indent,eol,start
-set history=1000
 set background=dark
+set backspace=indent,eol,start
 set breakindent
+set colorcolumn=120
+set copyindent
+set expandtab
+set foldlevelstart=6
+set foldmethod=indent
+set hidden
+set history=1000
+set incsearch
+set laststatus=2
 set linebreak
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set mouse=a
+set nobackup
+set noerrorbells
+set noswapfile
+set number relativenumber
+set ruler
+set scrolloff=8
+set shiftround
+set shiftwidth=2
+set smartcase
+set smarttab
+set softtabstop=4
 set splitbelow
 set splitright
-set foldmethod=indent
-set foldlevelstart=6
-set smartcase
-set noswapfile
-set nobackup
-set undofile
+set tabstop=4
+set title
 set undodir=~/.vim/undodir
-set incsearch
-set colorcolumn=120
+set undofile
+set wildmenu
+set wildmode=longest,list:longest
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set wrap
 " Puts two spaces before a wrapped line
 let &showbreak="  "
 
 syntax on
 filetype plugin indent on
+autocmd FileType css setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2
 
 set hlsearch
 " Clears search highlighting and resets last command
@@ -95,7 +121,7 @@ nnoremap <CR> :noh<CR>:<backspace>
 " colorscheme slate 
 hi CursorLine cterm=NONE ctermbg=67 ctermfg=white
 "guibg=darkred guifg=white
-noremap <leader>f :set cursorline! cursorcolumn!<CR>
+noremap <leader>: :set cursorline! cursorcolumn!<CR>
 
 " Start new line at bottom of file
 map <leader>g Go
@@ -111,11 +137,20 @@ noremap <leader><DOWN>  <C-w>j
 noremap <leader><UP>    <C-w>k
 noremap <leader><RIGHT> <C-w>l
 
+" Better movement over wrapped lines
+nnoremap <DOWN> gj
+nnoremap <UP> gk
+
 " Easier movement
 noremap K {
 noremap J }
 noremap H ^
 noremap L $
+
+noremap <C-UP> {
+noremap <C-DOWN> }
+noremap <C-LEFT> ^
+noremap <C-RIGHT> $
 
 " Movement in insert mode
 inoremap <C-h> <LEFT>
@@ -136,12 +171,13 @@ noremap <C-x> :bp<Bar>bd #<Cr>
 "inoremap `` ``<LEFT>
 
 " Save files quicker
-noremap <leader>s :wa<cr>
+noremap <leader>w :wa<cr>
 noremap <leader>W :wqa<cr>
 
 " Indent using TAB and S-TAB
 nnoremap <TAB> >>
 nnoremap <S-TAB> <<
+inoremap <S-TAB> <ESC><<i
 vnoremap <TAB> >><ESC>gv
 vnoremap <S-TAB> <<<ESC>gv
 
@@ -172,7 +208,7 @@ set path+=**
 " SNIPPETS
 " PYTHON
 let python_highlight_all = 1
-nnoremap <leader>e <esc>:w<CR>:!clear;python3 %<CR>
+nnoremap <leader>e <esc>:w<CR>:!clear;./%<CR>
 
 " Better undo breakpoints
 inoremap , ,<c-g>u
