@@ -1,17 +1,31 @@
+# generics
 alias ....='cd ../../../';
 alias ...='cd ../../';
 alias ..='cd ../';
-alias accounts='cd /home/josh/infrastructure-portal/modules/custom/rii_accounts';
-alias apr='cd ~/Documents/HR/APR/';
-alias aquilon='~/dotfiles/tmux/aquilon_session.sh';
-alias beta='cd ~/beta-infrastructure-portal/infrastructure-portal'
+alias gh_token='cat ~/tokens/gh_token';
+alias gs='git status'
+alias gcm='git commit -m'
+alias gpa='git pull --all --rebase --autostash'
+alias gd='git diff'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com';
+alias pls='sudo $(history -p !!)'
+alias workon='source .venv/bin/activate';
+alias workoff='deactivate';
+
+# notes
 alias daily='cd ~/Documents/notes/daily_tasks/';
 alias notes='cd ~/Documents/notes/';
-alias please='sudo !!'
-alias python='python3';
-alias slm_notes='cd ~/Documents/notes/daily_tasks/ && grep -r -i slm .';
-alias wincode='cd ~/Documents/code/';
-alias workoff='deactivate';
-alias workon='source .venv/bin/activate';
-alias gh_token='cat ~/Documents/notes/gh_token.txt';
-alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com';
+
+# docker & kube
+alias docker-full-restart='docker compose down; docker compose rm -fv; docker compose up'
+alias docker-full-restart-build='docker compose down; docker compose rm -fv; docker compose up -d --build && docker-compose logs -f'
+alias docker-full-restart-detatch='docker compose down; docker compose rm -fv; docker compose up -d'
+alias connect_minio='kubectl port-forward -n minio-nid-secure svc/nid-secure-minio 9009:9000 2>&1 > /dev/null &'
+
+# steam
+alias common='cd ~/.steam/steam/steamapps/common/'
+alias ksp-server='dotnet ~/ksp_mods/LMPServer/Server.dll'
+alias ksp-cd="cd .steam/debian-installation/steamapps/common/Kerbal\ Space\ Program/"

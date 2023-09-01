@@ -67,10 +67,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -89,21 +85,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-# SETUP
-# WSL starts in a mounted dir - force change it to ~/
-cd;
-clear;
-echo `date`;
-LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
-export LS_COLORS;
-
 # Allows x11 and displaying tkinter through wsl2
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=1
+#export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+#export LIBGL_ALWAYS_INDIRECT=1
 
 # FUNCTIONS
-function cd () { builtin cd $@ && ls; }
+function cd () { builtin cd "$@" && ls; }
 
 function today () {
     # Opens a notes file with todays date. Creates file if it does not exist
@@ -137,7 +124,9 @@ function today () {
         cat "${notes_path}.day_log_template" > $cur_date_path;
     fi
     lecho "Opening notes";
-    vim $cur_date_path;
+    LAST_FILE=$(find ~/Documents/notes/daily_tasks -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | sed '2q;d')
+    echo $LAST_FILE
+    vim $cur_date_path -o "${LAST_FILE}";
 };
 
 function todo () {
@@ -176,21 +165,32 @@ function recent_files () {
     for file in $FILES;
     do
         if [ -f ${file} ]; then
+            echo $SEPERATOR;
             echo ${file};
             cat ${file};
-            echo $SEPERATOR;
         fi;
     done;
 };
 
-function download () {
-    rsync -r -P -h adg51575@scarf.rl.ac.uk:autofit_muspinsim/$1 /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/;
-};
+function csh () {
+  docker exec -it $1 bash;
+}
 
-function upload () {
-    rsync -r -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/$1 adg51575@scarf.rl.ac.uk:autofit_muspinsim/;
-};
+# Source all files ending in _local
+for file in $(ls -a ~/ | grep ".*_local"); do
+  source $file
+done
 
-function update_py () {
-    rsync -P -h /home/josh/Documents/code/fit_muspinsim/autofit_muspinsim/{*.py,utils/*.py} adg51575@scarf.rl.ac.uk:autofit_muspinsim/
-};
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/doc/fzf/examples/completion.bash
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+# SETUP
+echo `date`;
+LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
+export LS_COLORS;
+ls ~
+tmux;
