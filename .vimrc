@@ -191,6 +191,7 @@ vnoremap <S-TAB> <<<ESC>gv
 
 " quit file easily
 nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :q!<cr>
 
 nnoremap <leader>v <c-v>
 nnoremap <C-#> <esc>I# <esc>j
