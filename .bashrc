@@ -181,6 +181,7 @@ for file in $(ls -a ~/ | grep ".*_local"); do
   source $file
 done
 
+PATH="$HOME/.local/bin:$PATH"
 source /usr/share/doc/fzf/examples/key-bindings.bash
 source /usr/share/doc/fzf/examples/completion.bash
 if type rg &> /dev/null; then
@@ -193,4 +194,3 @@ echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
 ls ~
-tmux;
