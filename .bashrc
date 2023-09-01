@@ -1,16 +1,11 @@
-case $- in
-    *i*) ;;
-    *) return;;
-esac
-# [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; };
-
-# Set vim keybindings for movement (defaults to insert mode)
-set -o vi;
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+[ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;};
+# Set vim keybindings for movement (defaults to insert mode)
+set -o vi;
 # don't put duplicate lines or lines starting with space in the history.
 # comment
 HISTCONTROL=ignoreboth
@@ -72,10 +67,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -94,21 +85,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-# SETUP
-# WSL starts in a mounted dir - force change it to ~/
-cd;
-clear;
-echo `date`;
-LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
-export LS_COLORS;
-
 # Allows x11 and displaying tkinter through wsl2
-export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-export LIBGL_ALWAYS_INDIRECT=1
+#export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+#export LIBGL_ALWAYS_INDIRECT=1
 
 # FUNCTIONS
-function cd () { builtin cd $@ && ls; }
+function cd () { builtin cd "$@" && ls; }
 
 function today () {
     # Opens a notes file with todays date. Creates file if it does not exist
@@ -206,8 +188,9 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+# SETUP
+echo `date`;
+LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
+export LS_COLORS;
 ls ~
 tmux;
-
-# Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
