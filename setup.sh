@@ -6,6 +6,8 @@ FILES=(
     ".vimrc"
     ".tmux.conf"
     ".tmux.conf.local"
+    ".kubectl_aliases"
+    ".kubectl_local"
     )
 
 old_path="${HOME}/dotfiles/old_dots";
