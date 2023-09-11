@@ -1,0 +1,2 @@
+alias kuns='kubectl config set-context --current --namespace '
+alias kuc='kubectl config use-context '
