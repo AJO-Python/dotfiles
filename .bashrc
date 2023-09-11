@@ -199,8 +199,16 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+# YouView setup
+source $HOME/.youviewrc
+
+# Kube setup
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
 # SETUP
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
-tmux;

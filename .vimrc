@@ -51,8 +51,6 @@ autocmd FileType gitcommit setlocal spell tw=80
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Get into nerdree
-nnoremap <LEADER>n :NERDTreeFocus<CR>
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
@@ -80,6 +78,9 @@ cmap w!! w !sudo tee % >/dev/null
 " open and reload vimrc from anywhere
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
+
+" Get into nerdree
+nnoremap <LEADER>n :NERDTreeFocus<CR>
 
 set autoindent
 set background=dark
