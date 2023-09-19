@@ -212,3 +212,5 @@ complete -o default -F __start_kubectl k
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
+ls ~
+eval "$(starship init bash)"
