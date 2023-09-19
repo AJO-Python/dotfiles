@@ -8,6 +8,7 @@ FILES=(
     ".tmux.conf.local"
     ".kubectl_aliases"
     ".kubectl_local"
+    ".config/starship.toml"
     )
 
 old_path="${HOME}/dotfiles/old_dots";
