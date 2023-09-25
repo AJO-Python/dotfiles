@@ -214,8 +214,4 @@ fi
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
-<<<<<<< HEAD
-=======
-#ls ~
->>>>>>> 91e9772 (use builtin ls for bashrc funcs)
 eval "$(starship init bash)"
