@@ -81,6 +81,7 @@ nmap <silent> <leader>rv :so $MYVIMRC<CR>
 
 " Get into nerdree
 nnoremap <LEADER>n :NERDTreeFocus<CR>
+nnoremap <LEADER><CR> za
 
 set autoindent
 set background=dark
