@@ -185,9 +185,8 @@ function file_envs () {
 }
 
 # Source all files ending in _local
-for file in $(/usr/bin/ls -a ~/ | grep ".*_local"); do
-  source $file
-done
+for file in $(/usr/bin/ls -a ~/ | grep "~/.*_local"); do
+  source "~/${file}"
 
 # Extend PATH
 PATH="$HOME/.local/bin:$PATH"
@@ -215,4 +214,8 @@ fi
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
+<<<<<<< HEAD
+=======
+#ls ~
+>>>>>>> 91e9772 (use builtin ls for bashrc funcs)
 eval "$(starship init bash)"
