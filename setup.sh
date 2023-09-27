@@ -9,6 +9,7 @@ FILES=(
     ".kubectl_aliases"
     ".kubectl_local"
     ".config/starship.toml"
+    ".youviewrc"
     )
 
 old_path="${HOME}/dotfiles/old_dots";
