@@ -18,7 +18,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-Plug 'VundleVim/Vundle.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdtree'
 Plug 'davidhalter/jedi-vim'
@@ -26,11 +25,17 @@ Plug 'kh3phr3n/python-syntax'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/limelight.vim'
-Plug 'git@github.com:junegunn/vim-easy-align.git'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'plasticboy/vim-markdown'
+Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
 
+xmap ga <Plug>(EasyAlign)
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
@@ -51,6 +56,7 @@ nnoremap <LEADER>n :NERDTreeFocus<CR>
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
+
 " JediVim mappings (DEFAULTS)
 " let g:jedi#goto_assigments_command = "<leader>g" -> goto assignment
 " let g:jedi#usages_command = "<leader>n" -> goto usages
@@ -217,7 +223,7 @@ set path+=**
 " SNIPPETS
 " PYTHON
 let python_highlight_all = 1
-nnoremap <leader>e <esc>:w<CR>:!clear;./%<CR>
+nnoremap <leader>e <esc>:w<CR>:!./%<CR>
 
 " Better undo breakpoints
 inoremap , ,<c-g>u

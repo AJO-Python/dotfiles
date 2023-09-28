@@ -155,7 +155,8 @@ function check_log () {
 };
 
 function myvenv () {
-    source "${HOME}/venvs/$1/bin/activate";
+  echo "myvenv does nothing right now"
+  # source "${HOME}/venvs/$1/bin/activate";  # commented out by conda initialize
 };
 
 function recent_files () {
@@ -179,6 +180,10 @@ function csh () {
   docker exec -it $1 bash;
 }
 
+function file_envs () {
+  export $(grep -v '^#' $1 | xargs -d '\n')
+}
+
 # Source all files ending in _local
 for file in $(ls -a ~/ | grep ".*_local"); do
   source $file
@@ -196,4 +201,4 @@ fi
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
-ls ~
+tmux;
