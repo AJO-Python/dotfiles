@@ -150,15 +150,6 @@ function lecho () {
     echo "$now $1" >> $log; 
 };
 
-function check_log () {
-    cat $1 | grep -E "runtime|called" | tail -n20;
-};
-
-function myvenv () {
-  echo "myvenv does nothing right now"
-  # source "${HOME}/venvs/$1/bin/activate";  # commented out by conda initialize
-};
-
 function recent_files () {
     # Find the 10 most recently modified files in dir
     SEPERATOR="######################################################";
@@ -175,14 +166,6 @@ function recent_files () {
         fi;
     done;
 };
-
-function csh () {
-  docker exec -it $1 bash;
-}
-
-function file_envs () {
-  export $(grep -v '^#' $1 | xargs -d '\n')
-}
 
 # Source all files ending in _local
 for file in $(/usr/bin/ls -a ~/ | grep "~/.*_local"); do
