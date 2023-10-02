@@ -142,6 +142,12 @@ noremap <leader>: :set cursorline! cursorcolumn!<CR>
 " Start new line at bottom of file
 map <leader>g Go
 
+" quickfix fun
+nnoremap <LEADER>co :copen<CR>
+nnoremap <LEADER>cc :cclose<CR>
+nnoremap <LEADER>> :cnext<CR>
+nnoremap <LEADER>< :cprev<CR>
+
 " Move window with space and directions
 " noremap <leader>l <C-w>l
 " noremap <leader>k <C-w>k
