@@ -39,7 +39,7 @@ xmap ga <Plug>(EasyAlign)
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Spell check commits and max width 80 chars
 autocmd FileType gitcommit setlocal spell tw=80
@@ -81,6 +81,8 @@ nmap <silent> <leader>rv :so $MYVIMRC<CR>
 
 " Get into nerdree
 nnoremap <LEADER>n :NERDTreeFocus<CR>
+
+" fold all with space+enter
 nnoremap <LEADER><CR> za
 
 set autoindent

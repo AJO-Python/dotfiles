@@ -25,7 +25,7 @@ call vundle#end()            " required
 " " NERDtree config
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and
 " bring back NERDTree.
