@@ -1,7 +1,7 @@
 # Configure path to vault
 # yvta-vault 2.0.1
-export ANSIBLE_VAULT_IDENTITY_LIST=infra@~/.vault/vault-password-infra,uitests@~/.vault/vault-password-uitests
-export ANSIBLE_VAULT_LIST=infra@~/repos/infrastructure/config/ansible/hosts/group_vars/all/vault,uitests@~/code/uitests/config/vault
+export ANSIBLE_VAULT_IDENTITY_LIST=infra@~/.vault/vault-password-infra,uitests@~/.vault/vault-password-uitests,k8s-core@~/.vault/vault-password-k8s-core
+export ANSIBLE_VAULT_LIST=infra@~/repos/infrastructure/config/ansible/hosts/group_vars/all/vault,uitests@~/repos/uitests/config/vault,k8s-core@~/repos/k8s-core/ansible/group_vars/all/vault
 export DEFAULT_VAULT_IDENTITY=infra
 # yvta-vault < 2.0.1 - Required for backwards compatibility
 #export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault/vault-password-infra
