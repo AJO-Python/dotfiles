@@ -168,8 +168,9 @@ function recent_files () {
 };
 
 # Source all files ending in _local
-for file in $(/usr/bin/ls -a ~/ | grep "~/.*_local"); do
-  source "~/${file}"
+for file in $(/usr/bin/ls -a ~/ | grep -v "/" | grep ".*_local"); do
+  source "${HOME}/${file}"
+done
 
 # Extend PATH
 PATH="$HOME/.local/bin:$PATH"
@@ -186,12 +187,12 @@ if [[ -f "$HOME/.youviewrc" ]]; then
 fi
 
 # Kube setup
-if [[ $(which kubectl) ]]; then
-  source <(kubectl completion bash)
-  alias k=kubectl
-  complete -o default -F __start_kubectl k
+which kubectl > /dev/null && \
+  source <(kubectl completion bash) && \
+  alias k=kubectl && \
+  complete -o default -F __start_kubectl k && \
   [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
-fi
+  [ -f ~/.kubectl_local ] && source ~/.kubectl_local
 
 # SETUP
 echo `date`;
