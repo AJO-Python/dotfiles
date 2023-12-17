@@ -193,24 +193,26 @@ done
 PATH="$HOME/.local/bin:$PATH"
 
 source /usr/share/doc/fzf/examples/key-bindings.bash
-source /usr/share/doc/fzf/examples/completion.bash
 if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore-vcs'
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
 # YouView setup
-source $HOME/.youviewrc
+if [[ -f "$HOME/.youviewrc" ]]; then
+  source $HOME/.youviewrc
+fi
 
 # Kube setup
-source <(kubectl completion bash)
-alias k=kubectl
-complete -o default -F __start_kubectl k
-[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+if [[ $(which kubectl) ]]; then
+  source <(kubectl completion bash)
+  alias k=kubectl
+  complete -o default -F __start_kubectl k
+  [ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+fi
 
 # SETUP
 echo `date`;
 LS_COLORS=$LS_COLORS:'di=0;35:tw=01;35:ow=01;35:';
 export LS_COLORS;
-ls ~
 eval "$(starship init bash)"
