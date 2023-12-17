@@ -185,7 +185,7 @@ function file_envs () {
 }
 
 # Source all files ending in _local
-for file in $(ls -a ~/ | grep ".*_local"); do
+for file in $(/usr/bin/ls -a ~/ | grep ".*_local"); do
   source $file
 done
 
