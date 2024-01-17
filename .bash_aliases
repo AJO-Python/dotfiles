@@ -12,7 +12,6 @@ alias la='ls -a'
 alias l='ls -F'
 alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com';
 alias pls='sudo $(history -p !!)'
-alias workon='source .venv/bin/activate';
 alias workoff='deactivate';
 
 # notes
