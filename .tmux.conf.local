@@ -1,25 +1,17 @@
-# -- windows & pane creation ---------------------------------------------------
+
 # new window retains current path, possible values are:
-#   - true
-#   - false (default)
 tmux_conf_new_window_retain_current_path=false
 
 # new pane retains current path, possible values are:
-#   - true (default)
-#   - false
 tmux_conf_new_pane_retain_current_path=true
 
+# new pane tries to reconnect ssh sessions (experimental), possible values are:
+tmux_conf_new_pane_reconnect_ssh=true
+
 # prompt for session name when creating a new session, possible values are:
-#   - true
-#   - false (default)
-tmux_conf_new_session_prompt=false
+tmux_conf_new_session_prompt=true
 
-# -- display -------------------------------------------------------------------
-
-# highlight focused pane (tmux >= 2.1), possible values are:
-#   - true
-#   - false (default)
-#tmux_conf_theme_highlight_focused_pane=true
+tmux_conf_theme_highlight_focused_pane=true
 
 # pane border style, possible values are:
 #   - thin (default)
@@ -63,9 +55,12 @@ tmux_conf_theme_window_status_format="#I #W"
 #     - #{hostname_full_ssh}
 #     - #{username}
 #     - #{username_ssh}
+
+tmux_conf_theme_window_status_current_bg="red"
+
 tmux_conf_theme_window_status_current_attr="bold"
 tmux_conf_theme_window_status_current_format="#I #W"
-#tmux_conf_theme_window_status_current_format="#{circled_window_index} #W"
+tmux_conf_theme_window_status_current_format="#{circled_window_index} #W"
 #tmux_conf_theme_window_status_current_format="#I #W#{?window_zoomed_flag,🔍,}"
 
 # window activity status style
@@ -193,63 +188,17 @@ tmux_conf_battery_status_discharging="↓"    # U+2193
 
 # clock style (when you hit <prefix> + t)
 # you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right
-tmux_conf_theme_clock_colour="$tmux_conf_theme_colour_4"
-tmux_conf_theme_clock_style="24"
-
+#tmux_conf_theme_clock_style="24"
 
 # -- clipboard -----------------------------------------------------------------
-
 # in copy mode, copying selection also copies to the OS clipboard
-#   - true
-#   - false (default)
-# on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
 tmux_conf_copy_to_os_clipboard=true
 
-
-# -- user customizations -------------------------------------------------------
-# this is the place to override or undo settings
-
-# increase history size
-#set -g history-limit 10000
-
-# start with mouse mode enabled
-set -g mouse on
-
-# force Vi mode
-#   really you should export VISUAL or EDITOR environment variable, see manual
-set -g status-keys vi
-set -g mode-keys vi
-bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
-unbind-key -T copy-mode-vi MouseDragEnd1Pane
-
-# replace C-b by C-a instead of using both prefixes
-# set -gu prefix2
-# unbind C-a
-# unbind C-b
-# set -g prefix C-a
-# bind C-a send-prefix
-
-# move status line to top
-#set -g status-position top
-
-# -- tpm -----------------------------------------------------------------------
-
-# while I don't use tpm myself, many people requested official support so here
-# is a seamless integration that automatically installs plugins in parallel
-
-# whenever a plugin introduces a variable to be used in 'status-left' or
-# 'status-right', you can use it in 'tmux_conf_theme_status_left' and
-# 'tmux_conf_theme_status_right' variables.
-
 # by default, launching tmux will update tpm and all plugins
-#   - true (default)
-#   - false
 tmux_conf_update_plugins_on_launch=true
 
 # by default, reloading the configuration will update tpm and all plugins
-#   - true (default)
-#   - false
 tmux_conf_update_plugins_on_reload=true
 
 # /!\ do not add set -g @plugin 'tmux-plugins/tpm'

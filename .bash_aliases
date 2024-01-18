@@ -1,18 +1,13 @@
 # generics
-alias ....='cd ../../../';
-alias ...='cd ../../';
-alias ..='cd ../';
 alias gh_token='cat ~/tokens/gh_token';
 alias gs='git status'
 alias gcm='git commit -m'
-alias gpa='git fetch --all -p && git pull --all --rebase --autostash'
+alias gpa='git fetch --all -p && git pull origin main && git pull --all --rebase --autostash'
 alias gd='git diff'
-alias ll='ls -alF'
-alias la='ls -a'
-alias l='ls -F'
 alias myip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com';
 alias pls='sudo $(history -p !!)'
 alias workoff='deactivate';
+alias repos='cd ~/repos'
 
 # notes
 alias daily='cd ~/Documents/notes/daily_tasks/';

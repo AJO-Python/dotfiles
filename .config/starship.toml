@@ -29,7 +29,8 @@ min_time_to_notify = 15_000
 format = '[$symbol \[$name\]]($style) '
 
 [kubernetes]
-disabled = true 
+disabled = false
+detect_files = ['helmfile.*', 'deployment.*', 'ingress.*']
 
 [sudo]
 disabled = true
@@ -37,6 +38,10 @@ disabled = true
 [time]
 disabled = false
 utc_time_offset = 'local'
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

@@ -3,6 +3,7 @@
 FILES=(
     ".bashrc"
     ".bash_aliases"
+    ".bash_functions"
     ".vimrc"
     ".tmux.conf"
     ".tmux.conf.local"

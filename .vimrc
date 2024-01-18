@@ -18,19 +18,19 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/nerdtree'
-Plug 'davidhalter/jedi-vim'
-Plug 'kh3phr3n/python-syntax'
+"Plug 'davidhalter/jedi-vim'
+Plug 'VundleVim/Vundle.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
+Plug 'kh3phr3n/python-syntax'
+Plug 'plasticboy/vim-markdown'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
@@ -46,29 +46,22 @@ autocmd FileType gitcommit setlocal spell tw=80
 
 " If another buffer tries to replace NERDTree, put it in the other window, and
 " bring back NERDTree.
-"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-
-" JediVim mappings (DEFAULTS)
-" let g:jedi#goto_assigments_command = "<leader>g" -> goto assignment
-" let g:jedi#usages_command = "<leader>n" -> goto usages
-" let g:jedi#rename_command = "<leader>r" -> rename in-scope
-" let g:jedi#completions_command = "<" -space> -> autocomplete popup
-" let g:jedi#documentation_command = "K" -> see docs of word under cursor
-" OVERRIDES
-let g:jedi#documentation_command = "<C-k>"
 
 "Remap space to leader
 nnoremap <SPACE> <Nop>
 "nnoremap <SPACE> :wa<CR>
 let mapleader=" "
-nnoremap <silent> <LEADER>f :Files<CR>
+nnoremap <silent> <LEADER>f :GFiles<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
@@ -89,7 +82,7 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set breakindent
-set colorcolumn=120
+set colorcolumn=81
 set copyindent
 set expandtab
 set foldlevelstart=6
