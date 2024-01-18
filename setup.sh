@@ -1,15 +1,14 @@
 #!/bin/bash
 
 FILES=(
-    ".bashrc"
     ".bash_aliases"
     ".bash_functions"
-    ".vimrc"
-    ".tmux.conf"
-    ".tmux.conf.local"
+    ".bashrc"
+    ".config/starship.toml"
     ".kubectl_aliases"
     ".kubectl_local"
-    ".config/starship.toml"
+    ".tmux.conf"
+    ".vimrc"
     ".youviewrc"
     )
 
