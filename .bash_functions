@@ -4,13 +4,11 @@ function cd () { builtin cd "$@" && ls; }
 
 function today () {
     # Opens a notes file with todays date. Creates file if it does not exist
-    log="/var/log/daily_tasks.log";
     notes_path="${HOME}/Documents/notes/daily_tasks";
     cur_date=`date +%F`;
     cur_day=`date +%a`;
     cur_month=`date +%b`;
     cur_year=`date +%Y`;
-    lecho "Edit request for daily log started";
     if [ $cur_day = "Mon" ]; then
         cur_week="week-$cur_date";
     else
@@ -20,22 +18,21 @@ function today () {
     cur_month_path="${notes_path}/${cur_month}-${cur_year}";
     cur_week_path="${cur_month_path}/${cur_week}";
     cur_date_path="${cur_week_path}/${cur_date}";
-    lecho "$cur_month - week beginning $cur_week";
     if [ ! -d $cur_month_path ]; then
-        lecho "Making ${cur_month_path}";
+        echo "Making ${cur_month_path}";
         mkdir -p $cur_month_path;
     fi;
     if [ ! -d $cur_week_path ]; then
-        lecho "Making ${cur_week_path}";
+        echo "Making ${cur_week_path}";
         mkdir -p $cur_week_path;
     fi;
     if [ ! -f $cur_date_path ]; then
-        lecho "Adding template for today.";
+        echo "Adding template for today.";
         cat "${notes_path}/.day_log_template" > $cur_date_path;
     fi
-    lecho "Opening notes";
     LAST_FILE=$(find ${notes_path} -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d" " -f5 | sed '2q;d')
     echo $LAST_FILE
+
     vim $cur_date_path -o "${LAST_FILE}";
 };
 
