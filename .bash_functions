@@ -1,5 +1,7 @@
 #!/bin/bash
 
+function cd () { builtin cd "$@" && ls; }
+
 function today () {
     # Opens a notes file with todays date. Creates file if it does not exist
     log="/var/log/daily_tasks.log";
