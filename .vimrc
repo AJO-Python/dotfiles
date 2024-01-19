@@ -129,8 +129,10 @@ nnoremap <CR> :noh<CR>:<backspace>
 
 " Setup cursor appearance
 " Toggle cursor position highlighting
-" colorscheme slate 
-hi CursorLine cterm=NONE ctermbg=67 ctermfg=white
+colorscheme torte
+hi CursorLine cterm=NONE ctermbg=8 ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=8 ctermfg=white
+hi ColorColumn cterm=NONE ctermbg=8 ctermfg=white
 "guibg=darkred guifg=white
 noremap <leader>: :set cursorline! cursorcolumn!<CR>
 
