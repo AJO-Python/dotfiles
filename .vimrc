@@ -231,7 +231,9 @@ set path+=**
 " SNIPPETS
 " PYTHON
 let python_highlight_all = 1
-nnoremap <leader>e <esc>:w<CR>:!./%<CR>
+
+" Run current file
+nnoremap <leader>e <esc>:w !chmod +x % && ./%<CR>
 
 " Better undo breakpoints
 inoremap , ,<c-g>u
