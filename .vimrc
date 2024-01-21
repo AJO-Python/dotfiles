@@ -18,19 +18,16 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/nerdtree'
-Plug 'davidhalter/jedi-vim'
-Plug 'kh3phr3n/python-syntax'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
+Plug 'kh3phr3n/python-syntax'
+Plug 'plasticboy/vim-markdown'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
@@ -55,14 +52,6 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
-" JediVim mappings (DEFAULTS)
-" let g:jedi#goto_assigments_command = "<leader>g" -> goto assignment
-" let g:jedi#usages_command = "<leader>n" -> goto usages
-" let g:jedi#rename_command = "<leader>r" -> rename in-scope
-" let g:jedi#completions_command = "<" -space> -> autocomplete popup
-" let g:jedi#documentation_command = "K" -> see docs of word under cursor
-" OVERRIDES
-let g:jedi#documentation_command = "<C-k>"
 
 "Remap space to leader
 nnoremap <SPACE> <Nop>
@@ -242,10 +231,6 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 inoremap <CR> <CR><c-g>u
 
-" Rename inline
-" jedi vim provides the same functionality with the same key command
-" Also maintains scope which this naive find/replace does not
-" nnoremap <leader>r "zyiw:%s/<C-R>z//gc<Left><Left><Left>
 
 " markdown code block syntax highlighting
 let g:markdown_fenced_languages=['html', 'python', 'bash', 'vim', 'json', 'yaml']
