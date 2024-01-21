@@ -25,10 +25,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kh3phr3n/python-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdtree'
+Plug 'tartansandal/vim-compiler-pytest'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'unblevable/quick-scope'
+Plug 'vim-test/vim-test'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
 
@@ -60,6 +62,13 @@ let mapleader=" "
 nnoremap <silent> <LEADER>f :Files<CR>
 nnoremap <silent> <C-f> :Rg<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Run tests
+let g:test#python#pytest#executable = 'python3 -m pytest'
+let test#python#runner = 'pytest'
+let test#strategy = "make"
+nmap <silent> <leader>h :TestNearest<CR>
+nmap <silent> <leader>H :TestFile<CR>
 
 " sudo save
 cmap w!! w !sudo tee % >/dev/null
