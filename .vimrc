@@ -36,21 +36,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()            " required
 
 xmap ga <Plug>(EasyAlign)
-" " NERDtree config
-" Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Spell check commits and max width 80 chars
 autocmd FileType gitcommit setlocal spell tw=80
 
-" If another buffer tries to replace NERDTree, put it in the other window, and
-" bring back NERDTree.
-"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
+nnoremap <LEADER>n :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
 
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
@@ -77,9 +70,6 @@ cmap w!! w !sudo tee % >/dev/null
 " open and reload vimrc from anywhere
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>rv :so $MYVIMRC<CR>
-
-" Get into nerdree
-nnoremap <LEADER>n :NERDTreeFocus<CR>
 
 " fold all with space+enter
 nnoremap <LEADER><CR> za
