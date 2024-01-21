@@ -26,6 +26,7 @@ Plug 'kh3phr3n/python-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'preservim/nerdtree'
 Plug 'tartansandal/vim-compiler-pytest'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -64,9 +65,9 @@ nnoremap <silent> <C-f> :Rg<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Run tests
-let g:test#python#pytest#executable = 'python3 -m pytest'
+"let g:test#python#pytest#executable = 'python3 -m pytest'
 let test#python#runner = 'pytest'
-let test#strategy = "make"
+let test#strategy = "dispatch"
 nmap <silent> <leader>h :TestNearest<CR>
 nmap <silent> <leader>H :TestFile<CR>
 
