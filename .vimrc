@@ -94,7 +94,7 @@ set laststatus=2
 set linebreak
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set mouse=a
+"set mouse=a
 set nobackup
 set noerrorbells
 set noswapfile
