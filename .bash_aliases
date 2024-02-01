@@ -14,6 +14,11 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
 # notes
 alias daily='cd ~/Documents/notes/daily_tasks/';
 alias notes='cd ~/Documents/notes/';
