@@ -64,6 +64,7 @@ source "${HOME}/.bash_functions"
 # Extend PATH
 PATH="$HOME/.local/bin:$PATH"
 PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+PATH="$HOME/dotfiles/bin:$PATH"
 
 if [ -d "/usr/share/doc/fzf" ]; then
   source /usr/share/doc/fzf/examples/key-bindings.bash

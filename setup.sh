@@ -35,3 +35,5 @@ for file in ${FILES[*]}; do
     fi
 done;
 echo "Done";
+
+ln -s ${HOME}/dotfiles/bin/auto-apt.sh /etc/cron.daily
