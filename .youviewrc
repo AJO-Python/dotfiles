@@ -5,7 +5,7 @@ export ANSIBLE_VAULT_IDENTITY_LIST=infra@~/.vault/vault-password-infra,uitests@~
 export ANSIBLE_VAULT_LIST=infra@~/repos/infrastructure-main/config/ansible/hosts/group_vars/all/vault,uitests@~/repos/uitests/config/vault,k8s-core@~/repos/k8s-core/ansible/group_vars/all/vault
 export DEFAULT_VAULT_IDENTITY=infra
 # yvta-vault < 2.0.1 - Required for backwards compatibility
-#export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault/vault-password-infra
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault/vault-password-infra
 export ANSIBLE_VAULT_PATH=~/repos/infrastructure-main/config/ansible/hosts/group_vars/all/vault
 function check_health {
   curl -s "https://endeavour.autinf.dev.youview.co.uk/api/v1/slots/testaut-${1}-stb-${2}/yvrig_redirect/health" | jq '.'
