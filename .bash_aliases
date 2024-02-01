@@ -9,6 +9,11 @@ alias pls='sudo $(history -p !!)'
 alias workoff='deactivate';
 alias repos='cd ~/repos'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 # notes
 alias daily='cd ~/Documents/notes/daily_tasks/';
 alias notes='cd ~/Documents/notes/';
