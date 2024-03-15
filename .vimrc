@@ -45,6 +45,9 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nnoremap <LEADER>n :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
+" Stop vim-fugitive from swamping the buffer list
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 
